@@ -1,0 +1,60 @@
+body{
+    background-image: url("/Assets/imagenes/usuarios.jpg");
+    background-color:transparent;
+}
+#nucleo-icon{
+position:absolute;
+margin-left: 81%;
+margin-top:-48px ;
+
+
+}
+
+#email-icon{
+    position:absolute;
+    margin-left: 81%;
+    margin-top:-133px ;
+}
+
+#ape-icon{
+    position:absolute;
+    margin-left: 81%;
+    margin-top:-218px ;
+}
+
+#nomb-icon{
+    position:absolute;
+    margin-left: 81%;
+    margin-top:-303px ;
+}
+#id-icon{
+    position:absolute;
+    margin-left: 81%;
+    margin-top:-375px ;
+}
+
+#guardar{
+position: relative;
+margin-left:4.5% ;
+margin-top:-10% ;
+
+}
+
+#cancelar{
+    position: relative;
+    margin-left:43.5% ;
+    margin-top:-10% ;
+    
+    }
+
+#search-icon{
+    position: absolute;
+    margin-left:-4%;
+    margin-top: -1%;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}

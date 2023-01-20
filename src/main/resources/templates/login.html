@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="icon" href="../arrow_entrance_in_internet_log_login_security_icon_127060.ico" />
+<link href="/bootstrap.min.css" rel="stylesheet">
+<link href="/signin.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    setTimeout(function () {
+      $("#error").fadeOut(1500);
+    }, 20000);
+    setTimeout(function () {
+      $("#out").fadeOut(1500);
+    }, 2000);
+  });
+</script>
+
+<head>
+</head>
+
+<body>
+  <header></header>
+  <div class="container">
+    <div class="container theme-showcase" role="main">
+      <hr class="featurette-divider">
+      <img src="/login.png" width="136" height="136" class="center">
+      <form class="form-signin" th:action="@{/login}" method="post">
+        <h3 class="form-signin-heading text-center">Iniciar Sesión</h3>
+        <div class="alert alert-danger text-center" id="error" th:if="${param.error}">
+          <h6>Error de credenciales</h6>
+        </div>
+        <div class="alert alert-success text-center" id="out" th:if="${param.logout}">
+          <h6>Se ha cerrado sesión correctamente </h6>
+        </div>
+        <label for="username" class="sr-only">Usuario</label>
+        <input type="text" maxlength="18" id="username" name="username" class="form-control" oninput="camp_user()" placeholder="Usuario"
+          required autofocus><br>
+        <label for="password" class="sr-only">Contraseña</label>
+        <input type="password" id="password" name="password" class="form-control" placeholder="Contraseña" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="datos()">Entrar</button>
+      </form>
+
+      <!-- <ul class="login-more p-t-190 text-center">
+        <span class="txt1">
+          No tienes cuenta?
+        </span>
+        <a th:href="@{/registrar}" class="txt2">
+          Regístrate
+        </a> -->
+
+    </div>
+  </div>
+  <script src="../funciones.js"></script>
+</body>
+
+</html>

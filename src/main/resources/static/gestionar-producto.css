@@ -1,0 +1,55 @@
+#guardarpr {
+  position: absolute;
+  margin-left: 4.5%;
+  margin-top: -2%;
+
+}
+
+#cancelar {
+  position: absolute;
+  margin-left: 67.2%;
+  margin-top: -2%;
+
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#search-icon {
+  position: absolute;
+  margin-left: -4%;
+  margin-top: -1%;
+}
+
+#prec-icon {
+  position: absolute;
+  margin-left: 81%;
+  margin-top: -48px;
+
+
+}
+
+#idp-icon {
+  position: absolute;
+  margin-left: 81%;
+  margin-top: -340px;
+}
+
+#prod-icon {
+  position: absolute;
+  margin-left: 68%;
+  margin-top: -185px;
+
+
+}
+
+#estado-icon {
+  position: absolute;
+  margin-left: 55%;
+  margin-top: -132px;
+
+
+}

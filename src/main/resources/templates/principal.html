@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Página principal</title>
+    <link rel="icon" href="../Book_40918.ico" />
+    <link rel="stylesheet" href="../Pagina-principal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <img src="../geslib.png" id="imgwelcome">
+    <img src="../libs1.png" id="libs">
+    <div id="sidebar" class="sidebar bg-dark">
+
+        <a href="#" class="boton-cerrar" onclick="ocultar()">&times;</a>
+        <li><h5 th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" id="admin">Bienvenido  <span sec:authentication="name"></span>&nbsp;&nbsp;&nbsp;<i class="bi bi-person-vcard"></i></h5></li>
+        <h5 th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}" id="admin">Bienvenido  <span sec:authentication="name"></span>&nbsp;&nbsp;&nbsp;<i class="bi bi-person"></i></h5>
+        <ul class="menu">
+            <li><a id="linku" onclick="cambcoloru()"  href="../listar_u" target="formularios"><i class="bi-person-circle"></i>  USUARIOS</a></li>
+            <li><a id="linkp" onclick="cambcolorp()"  href="../listar_p" target="formularios"><i class="bi-basket2-fill"></i>  PRODUCTOS</a></li>
+            <li><a id="linkvp" onclick="cambcolorvp()"  th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" href="../listar_vp" target="formularios"><i class="bi bi-cart-check"></i>  VENTAS-PRODUCTOS</a></li>
+            <li><a href="#">•</a></li>
+            <li><a href="#">•</a></li>
+        </ul>
+        <div name="foto_pago">
+            <a id="btnocultar" class="btn btn-danger" href="/Cerrar" target="ifr-foto-pago" onclick="btnocultar()" hidden><i class="bi bi-x-circle"></i></a>
+            <iframe id="ifr-foto-pago" name="ifr-foto-pago" class="container text-center"></iframe>
+        </div>
+        <a id="foto" href="/20221112134128_2.png" target="ifr-foto-pago" onclick="btnmostrar()">
+            <h6 id="pago">Pagar con transfermòvil</h6>
+        </a><img id="tm" src="../20221113141124.png"><br><br>
+        <a href="../ez-QR-min.png" target="ifr-foto-pago" onclick="btnmostrar()">
+            <h6 id="pago">Pagar con Enzona</h6>
+        </a><img id="ez" src="../cu.xetid.apk.enzona.17000.png">
+        <form th:action="@{/logout}" method="post">
+        <input id="cerrar-sesion" type="submit" value="Cerrar sesión" onclick="return confirm('Está seguro que desea cerrar la sesión?')" >
+    </form>
+        <img id="salir" src="../Exit_41038.png">
+    </div>
+
+    <div id="contenido">
+        
+
+        <a id="abrir" class="abrir-cerrar" href="javascript:void(0)" onclick="mostrar()">
+            <abbr title="Menú"><img src="../1486564398-menu2_81519.svg" width="5%" style="border-width: 0px" /></a>
+        <a id="cerrar" class="abrir-cerrar" href="#" onclick="ocultar()">
+            <img src="../1486564398-menu2_81519.svg" width="5%" style="border-width: 0px"/></a>
+    </div>
+    <div id="div-form">
+        <iframe id="ifr-form" name="formularios" class="container text-center"></iframe>
+    </div>
+    <script src="../Pagina-principal.js"></script>
+    <script src="/funciones.js"></script>
+</body>
+
+</html>

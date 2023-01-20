@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de productos</title>
+    <link rel="stylesheet" href="/gestionar-producto.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            setTimeout(function () {
+                $("#alert").fadeOut(1500);
+            }, 4000);
+        });
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <ul class="navbar-nav mr-auto">
+            <a class="nav-link " href="/listar_vp">Control de ventas<span class="sr-only">(current)</span></a>
+        </ul>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+
+                <a class="navbar-brand" href="#">Agregar venta <span class="sr-only">(current)</span></a>
+
+            </ul>
+        </div>
+        <a class="btn btn-danger" href="/Cerrar">Cerrar</a>
+    </nav>
+
+    <br><br><br>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+                <h1 class="text-center">Registro de ventas</h1>
+                <div class="card-body">
+                    <form th:action="@{/save_vp}" th:object="${vproducto}" method="POST">
+                        <div th:if="${doble}" id="alert" class="alert alert-danger">
+                            <h6 class="text-center" th:text="${doble}"></h6>
+                        </div>
+
+                        <div class="form-group" hidden>
+                            <label for="" class="text-muted">ID :</label>
+                            <input type="text" id="id" class="form-control text-muted" th:field="*{id}"
+                                placeholder="Introduzca el id del producto" required readonly>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label name="precio">Comprador :</label>
+                            <input type="text" step="any" min="0" maxlength="25" id="nombre" oninput="camp_nomb()"
+                                class="form-control" placeholder="Nombre del comprador"
+                                th:field="*{comprador}" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="total_c" style="font-weight: bold;">Fecha de venta: </label>
+                                <input type="date" th:field="*{fechaDeVenta}" class="form-control" id="fecha_ven" placeholder="Fecha de la venta" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="input_value" style="font-weight: bold;">Hora de venta:</label>
+                                <input type="time" pattern="1:00" th:field="*{horaDeVenta}" class="form-control" id="hora_ven"
+                                    placeholder="Hora de la venta" required >
+                            </div>
+                        </div>
+                        
+                
+                        <h5>Agregar producto a la lista (Opcional)</h5>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="total_c" style="font-weight: bold;">Nombre: </label>
+                                <input type="text" oninput="igual()" class="form-control" id="input_name" placeholder="Nombre del nuevo producto">
+                            </div>
+                            <div class="form-group col-md-6" hidden>
+                                <label for="input_value" style="font-weight: bold;">Valor:</label>
+                                <input type="text" class="form-control" id="input_value"
+                                    placeholder="Valor" readonly>
+                            </div>
+                        </div>
+                        <a class="btn btn-primary text-white" id="create_option" type="button"
+                            onclick="createOption()" hidden>Agregar</a>
+
+
+                        <div class="form-group">
+                            <label for="productos" class="text-center">Seleccione al menos un producto:</label>
+                            <select onchange="myFunction()" id="sel" th:field="*{productosVendidos}" multiple="multiple" required>
+                                <option value="">Seleccione
+                                <option value="Aceite"> Aceite
+                                <option value="Arroz importado"> Arroz importado
+                                <option value="Arroz nacional"> Arroz nacional
+                                <option value="Azucar blanca"> Azucar blanca
+                                <option value="Azucar prieta"> Azucar prieta
+                                <option value="Café"> Café
+                                <option value="Chicharos"> Chicharos
+                                <option value="Cigarros fuertes"> Cigarros fuertes
+                                <option value="Cigarros suaves"> Cigarros suaves
+                                <option value="Compotas"> Compotas
+                                <option value="Detergente l"> Detergente
+                                <option value="Frijoles blancos"> Frijoles blancos
+                                <option value="Frijoles colorados"> Frijoles colorados
+                                <option value="Frijoles negros"> Frijoles negros
+                                <option value="Jabon de baño"> Jabon de baño
+                                <option value="Jabon de lavar"> Jabon de lavar
+                                <option value="Leche"> Leche
+                                <option value="Pasta dental"> Pasta dental
+                                <option value="Sal"> Sal
+                                <option value="Tabacos"> Tabacos
+                                <option value="Yogurt"> Yogurt
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Núcleo :</label>
+                            <input type="number" id="nucleo" min="0" maxlength="6" oninput="max6()" name="nucleo"
+                                th:field="*{nucleo}" class="form-control" placeholder="Introduzca el nucleo del comprador"
+                                required>
+
+                        <div class="form-group">
+                            <label name="precio">Importe total :</label>
+                            <input type="number" step="any" min="0" maxlength="6" id="pre" oninput="camp_pro()"
+                                class="form-control" placeholder="Importe total de venta"
+                                th:field="*{importeTotal}" required>
+                        </div>
+                        <span><i class="bi-currency-dollar" id="prec-icon"></i></span>
+                        <!-- <span><i class="bi-key" id="idp-icon"></i></span> -->
+                        <span><i class="bi-list-ul" id="prod-icon"></i></span>
+                        
+                </div>
+                <div class="box-footer">
+                    <button class="btn btn-success" id="guardarpr">Guardar&nbsp;<i
+                            class="bi-bag-plus-fill" id="guardar-icon"></i></button>
+                    <a class="btn btn-secondary text-white" id="cancelar" href="/listar_vp">Cancelar&nbsp;<i
+                            class="bi-x-circle-fill text-white" id="cancelar-icon"></i></a>
+                </div>
+                </form><br><br>
+            </div>
+
+        </div>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="/sweetalert.min.js"></script>
+    <script src="../funciones.js"></script>
+    <script src="../agregar_prod.js"></script>
+</body>
+
+</html>
